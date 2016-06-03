@@ -16,12 +16,11 @@ int main()
 	//getchar();
 	while (1)
 	{
-		GameControler gc(30, 15);
+		GameControler gc(30, 15, 100);
 		bool isOver = false;
 		while (!isOver)
 		{
 			isOver = gc.Looper();
-			Sleep(100);
 		}
 	}
 	

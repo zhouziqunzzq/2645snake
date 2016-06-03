@@ -7,7 +7,7 @@ class GameControler  //游戏逻辑流程控制类
 {
 public:
 	GameControler();
-	GameControler(int x, int y) :mySnake(3, 3, 3), aFood(), maxX(x), maxY(y), score(0), dh(maxX,maxY)
+	GameControler(int x, int y, int gs) :mySnake(3, 3, 3), aFood(), maxX(x), maxY(y), score(0), dh(maxX, maxY), gameSpeed(gs)
 	{ 
 		aFood.getRandFood(x, y);
 		dh.SetBorder("■");
@@ -24,6 +24,7 @@ private:
 	snake mySnake;  //玩家控制的蛇
 	Food aFood;  //食物
 	IDrawingHelper dh;  //图像绘制接口实例
+	int gameSpeed; //行进速度
 
 	bool Judge();  //判断游戏是否结束
 	void Update();  //更新状态
