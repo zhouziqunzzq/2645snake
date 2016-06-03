@@ -21,7 +21,7 @@ int main()
 		while (!isOver)
 		{
 			isOver = gc.Looper();
-			//Sleep(200);
+			Sleep(100);
 		}
 	}
 	

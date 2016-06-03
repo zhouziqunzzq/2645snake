@@ -17,7 +17,7 @@ public:
 	void SetSnakeBody(string c) { snakeBody = c; }
 	void SetBorder(string c) { border = c; }
 	void SetFood(string c) { food = c; }
-	void Draw(snake&, Food&);  //»­Ò»Ö¡
+	void Draw(snake&, Food&, int socre);  //»­Ò»Ö¡
 	void Clean();  //Çå³ý»­Ãæ
 private:
 	string snakeHead;  //ÉßÍ·×Ö·û

@@ -38,7 +38,7 @@ bool GameControler::Judge()
 	default:
 		break;
 	}
-	bool flag1 = nextX >= -1 && nextX <= maxX && nextY >= -1 && nextY <= maxY;
+	bool flag1 = nextX >= 0 && nextX < maxX && nextY >= 0 && nextY < maxY;
 	bool flag2 = true;  //flag1:是否撞到墙壁,flag2:是否撞到身体
 	list<SnakeNode>::iterator it = mySnake.getNodes().begin();
 	for (; it != mySnake.getNodes().end(); ++it)
@@ -55,14 +55,11 @@ bool GameControler::Judge()
 void GameControler::Update()
 {
 	//多次获取方向键状态并使蛇转向
-	for (int i = 0; i < 200; ++i){
-		UpdateDr();
-		Sleep(1);
-	}
-	//UpdateDr();
-	//UpdateDr();
-	//UpdateDr();
-	//UpdateDr();
+	UpdateDr();
+	UpdateDr();
+	UpdateDr();
+	UpdateDr();
+	UpdateDr();
 	//蛇爬行一次
 	mySnake.Go();
 	//判断是否吃到食物
@@ -70,16 +67,38 @@ void GameControler::Update()
 	{
 		mySnake.Grow(1);  //蛇生长
 		score += 10;  //加分
-		aFood.getRandFood(maxX, maxY);  //获取下一个食物随机位置
+		bool isGoodFood;  //食物是否出现在合法的位置
+		do
+		{
+			isGoodFood = false;  
+			aFood.getRandFood(maxX, maxY);  //获取下一个食物随机位置
+			list<SnakeNode>::iterator it = mySnake.getNodes().begin();
+			for (; it != mySnake.getNodes().end(); ++it)
+			{
+				if (it->getX() == aFood.getX() && it->getY() == aFood.getY())
+				{
+					isGoodFood = true;
+					break;
+				}
+			}
+		} while (isGoodFood);
 	}
 }
 
 bool GameControler::Looper()
 {
 	dh.Clean();
-	dh.Draw(mySnake, aFood);
-	Update();
-	return !Judge();
+	bool flag = Judge();
+	if (flag)
+	{
+		Update();
+		dh.Draw(mySnake, aFood, score);
+		return false;
+	}
+	else
+	{
+		return true;
+	}	
 }
 
 direction GameControler::GetArrowKey()

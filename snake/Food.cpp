@@ -17,6 +17,6 @@ Food::~Food()
 void Food::getRandFood(int maxX, int maxY)
 {
 	srand((unsigned int)time(0));
-	x = rand() % (maxX - 2) + 2;
-	y = rand() % (maxY - 2) + 2;
+	x = rand() % (maxX - 10) + 6;
+	y = rand() % (maxY - 10) + 6;
 }
