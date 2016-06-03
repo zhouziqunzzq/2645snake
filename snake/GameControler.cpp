@@ -55,11 +55,11 @@ bool GameControler::Judge()
 void GameControler::Update()
 {
 	//多次获取方向键状态并使蛇转向
-	UpdateDr();
-	UpdateDr();
-	UpdateDr();
-	UpdateDr();
-	UpdateDr();
+	for (int i = 0; i < gameSpeed; ++i)
+	{
+		UpdateDr();
+		Sleep(1);
+	}
 	//蛇爬行一次
 	mySnake.Go();
 	//判断是否吃到食物
@@ -88,17 +88,9 @@ void GameControler::Update()
 bool GameControler::Looper()
 {
 	dh.Clean();
-	bool flag = Judge();
-	if (flag)
-	{
-		Update();
-		dh.Draw(mySnake, aFood, score);
-		return false;
-	}
-	else
-	{
-		return true;
-	}	
+	dh.Draw(mySnake, aFood, score);
+	Update();
+	return !Judge();
 }
 
 direction GameControler::GetArrowKey()
