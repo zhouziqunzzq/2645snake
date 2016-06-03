@@ -108,19 +108,19 @@ void GameControler::Pause()
 
 direction GameControler::GetArrowKey()
 {
-	if (GetAsyncKeyState(VK_UP) < 0 || GetAsyncKeyState('W') < 0)
+	if (GetAsyncKeyState(VK_UP) < 0 || GetAsyncKeyState('W') < 0 || GetAsyncKeyState('K') < 0)
 	{
 		return UP;
 	}
-	if (GetAsyncKeyState(VK_DOWN) < 0 || GetAsyncKeyState('S') < 0)
+	if (GetAsyncKeyState(VK_DOWN) < 0 || GetAsyncKeyState('S') < 0 || GetAsyncKeyState('J') < 0)
 	{
 		return DOWN;
 	}
-	if (GetAsyncKeyState(VK_LEFT) < 0 || GetAsyncKeyState('A') < 0)
+	if (GetAsyncKeyState(VK_LEFT) < 0 || GetAsyncKeyState('A') < 0 || GetAsyncKeyState('H') < 0)
 	{
 		return LEFT;
 	}
-	if (GetAsyncKeyState(VK_RIGHT) < 0 || GetAsyncKeyState('D') < 0)
+	if (GetAsyncKeyState(VK_RIGHT) < 0 || GetAsyncKeyState('D') < 0 || GetAsyncKeyState('L') < 0)
 	{
 		return RIGHT;
 	}
