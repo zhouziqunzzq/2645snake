@@ -38,7 +38,8 @@ bool GameControler::Judge()
 	default:
 		break;
 	}
-	bool flag1 = nextX >= 0 && nextX < maxX && nextY >= 0 && nextY < maxY;
+	//墙：x=0, x=maxX, y=0, y=maxY
+	bool flag1 = !(nextX == 0 || nextX == maxX - 1 || nextY == 0 || nextY == maxY - 1);
 	bool flag2 = true;  //flag1:是否撞到墙壁,flag2:是否撞到身体
 	list<SnakeNode>::iterator it = mySnake.getNodes().begin();
 	for (; it != mySnake.getNodes().end(); ++it)
@@ -54,12 +55,6 @@ bool GameControler::Judge()
 
 void GameControler::Update()
 {
-	//多次获取方向键状态并使蛇转向
-	for (int i = 0; i < gameSpeed; ++i)
-	{
-		UpdateDr();
-		Sleep(1);
-	}
 	//蛇爬行一次
 	mySnake.Go();
 	//判断是否吃到食物
@@ -88,8 +83,14 @@ void GameControler::Update()
 bool GameControler::Looper()
 {
 	dh.Clean();
-	dh.Draw(mySnake, aFood, score);
 	Update();
+	dh.Draw(mySnake, aFood, score);
+	//多次获取方向键状态并使蛇转向
+	for (int i = 0; i < gameSpeed; ++i)
+	{
+		UpdateDr();
+		Sleep(1);
+	}
 	return !Judge();
 }
 
