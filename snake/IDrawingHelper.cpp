@@ -21,8 +21,11 @@ IDrawingHelper::~IDrawingHelper()
 {
 }
 
-void IDrawingHelper::Draw(snake& s, Food& f)
+void IDrawingHelper::Draw(snake& s, Food& f, int score)
 {
+	//»­µÃ·Ö
+	Gotoxy(0, 0);
+	cout << "Score:" << score;
 	//»­ÉßÍ·
 	list<SnakeNode>::iterator it = s.getNodes().begin();
 	Gotoxy(2 * it->getX(), it->getY());

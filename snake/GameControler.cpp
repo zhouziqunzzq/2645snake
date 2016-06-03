@@ -78,7 +78,7 @@ bool GameControler::Looper()
 	if (flag)
 	{
 		Update();
-		dh.Draw(mySnake, aFood);
+		dh.Draw(mySnake, aFood, score);
 		return false;
 	}
 	else
