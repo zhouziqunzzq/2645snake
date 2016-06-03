@@ -67,9 +67,10 @@ void GameControler::Update()
 	{
 		mySnake.Grow(1);  //蛇生长
 		score += 10;  //加分
-		bool isGoodFood = false;  //食物是否出现在合法的位置
+		bool isGoodFood;  //食物是否出现在合法的位置
 		do
 		{
+			isGoodFood = false;  
 			aFood.getRandFood(maxX, maxY);  //获取下一个食物随机位置
 			list<SnakeNode>::iterator it = mySnake.getNodes().begin();
 			for (; it != mySnake.getNodes().end(); ++it)
