@@ -88,10 +88,22 @@ bool GameControler::Looper()
 	//多次获取方向键状态并使蛇转向
 	for (int i = 0; i < gameSpeed; ++i)
 	{
+		Pause();
 		UpdateDr();
 		Sleep(1);
 	}
 	return !Judge();
+}
+
+void GameControler::Pause()
+{
+	if (GetAsyncKeyState(VK_SPACE) < 0)
+	{
+		Sleep(1000);  //保证按键被弹起
+		while (GetAsyncKeyState(VK_SPACE) >= 0)
+			Sleep(1);
+		Sleep(1000);  //保证按键被弹起
+	}
 }
 
 direction GameControler::GetArrowKey()

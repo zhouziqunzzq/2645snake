@@ -29,6 +29,7 @@ private:
 	bool Judge();  //判断游戏是否结束
 	void Update();  //更新状态
 	direction GetArrowKey();  //获取按下的方向键方向
+	void Pause();  //捕获挂起
 	void UpdateDr();  //使蛇转向
 };
 
