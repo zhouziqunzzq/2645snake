@@ -104,3 +104,4 @@ void IDrawingHelper::Clean()
 {
 	system("cls");
 }
+
